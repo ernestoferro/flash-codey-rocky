@@ -26,7 +26,8 @@ def main() -> None:
         sys.exit(1)
 
     config = ConfigParser()
-    config.read('flash.ini')
+    if not config.read('flash.ini'):
+        raise FileNotFoundError('Failed to find flash.ini')
 
     with open(sys.argv[1], 'r', encoding='utf-8') as code_file:
         code = code_file.read()
